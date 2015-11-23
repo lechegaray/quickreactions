@@ -6,8 +6,7 @@ var React = require('react')
 var app = express()
  
 app.use('/Components',
-  express.static(path.join(path.join(__dirname, '..'),
-  'Components')))
+  express.static(path.join(__dirname, 'Components')))
  
 app.use('/assets',
   express.static(path.join(path.join(__dirname, '..'),
@@ -20,14 +19,13 @@ app.get('/', function (req, res) {
       <head>
         <title>Hello World</title>
         <script src="//fb.me/react-0.13.1.js"></script>
-        <script src="//fb.me/JSXTransformer-0.13.1.js"></script>
-        <script src="/Components/Timestamp.jsx" type="text/jsx"></script>
+        <script src="/Components/Timestamp.js"></script>
       </head>
       <body>
         <HelloWorld from="index.jsx on the server" />
         <div id="reactContainer" />
       </body>
-      <script src="/assets/index.js" type="text/jsx"></script>
+      <script src="/assets/index.js"></script>
     </html>)
  
     res.end(html)
