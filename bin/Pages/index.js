@@ -37,9 +37,8 @@ var React = require('react')
 var HelloWorld = require('../Components/HelloWorld')
 var Timestamp = require('../Components/Timestamp')
  
-React.render(
-    React.createElement(HelloWorld, {from: "index.jsx, transformed, bundled," + ' ' +
-        "and running on the client"}),
+var helloWorldElement = React.render(
+    React.createElement(HelloWorld, {from: "server.jsx, running on the server"}),
     document.getElementById('reactHelloContainer'))
  
 var timestampElement = React.render(
@@ -47,10 +46,9 @@ var timestampElement = React.render(
     document.getElementById('reactContainer'))
  
 setInterval(function() {
-    timestampElement.setState({
-        date: "Updated through setState: "
-              + new Date().toString() }) },
-    500)
+    helloWorldElement.setState({ from: "index.jsx, transformed, bundled, and running on the client" })
+    timestampElement.setState({ date: "Updated through setState: " + new Date().toString() })
+}, 500)
 },{"../Components/HelloWorld":1,"../Components/Timestamp":2,"react":160}],4:[function(require,module,exports){
 // shim for using process in browser
 

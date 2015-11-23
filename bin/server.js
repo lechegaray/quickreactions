@@ -1,4 +1,5 @@
 var React = require('react')
+  , Layout = require('./Components/Layout')
   , HelloWorld = require('./Components/HelloWorld')
   , express = require('express')
   , path = require('path')
@@ -7,20 +8,14 @@ var app = express()
 app.use('/pages', express.static(path.join(__dirname, 'Pages')))
  
 app.get('/', function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'})
-  var html = React.renderToString(
-    React.createElement("html", null, 
-      React.createElement("head", null, 
-        React.createElement("title", null, "Hello World")
-      ), 
-      React.createElement("body", null, 
-        React.createElement("div", {id: "reactContainer"}), 
-        React.createElement("div", {id: "reactHelloContainer"}, 
-          React.createElement(HelloWorld, {from: "server.jsx, running on the server"})
-        )
-      ), 
-      React.createElement("script", {src: "/pages/index.js"})
-    ))
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    var content = React.renderToString(
+        React.createElement(HelloWorld, {from: "server.jsx, running on the server"})
+    )
+ 
+    var html = React.renderToStaticMarkup(
+        React.createElement(Layout, {content: content})
+    )
  
     res.end(html)
 })
