@@ -11,10 +11,7 @@ http.createServer(function (req, res) {
           <title>Hello World</title>
         </head>
         <body>
-          <HelloWorld />
-          <div>
-            Rendered from the Server!
-          </div>
+          <HelloWorld from="index.jsx on the server" />
         </body>
       </html>
     )

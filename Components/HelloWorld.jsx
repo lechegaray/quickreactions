@@ -1,11 +1,16 @@
 var React = require('react')
-
+ 
 module.exports = React.createClass({
   render: function() {
-    return(
+    return (
       <div>
-        This is from the HelloWorld.jsx
-        component render function.
+        <div>
+          This is from the HelloWorld.jsx
+          component render function.
+        </div>
+        <div>
+          Rendered from: {this.props.from}
+        </div>
       </div>
     )
   }
