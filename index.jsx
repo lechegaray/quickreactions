@@ -20,6 +20,7 @@ app.get('/', function (req, res) {
         <title>Hello World</title>
         <script src="//fb.me/react-0.13.1.js"></script>
         <script src="/Components/Timestamp.js"></script>
+        <script src="/Components/HelloWorld.js"></script>
       </head>
       <body>
         <HelloWorld from="index.jsx on the server" />
