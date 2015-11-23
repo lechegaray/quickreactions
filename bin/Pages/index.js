@@ -1,23 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react')
-var HelloWorld = require('../lib/Components/HelloWorld')
-var Timestamp = require('../lib/Components/Timestamp')
- 
-var timestampInstance = React.createFactory(Timestamp)();
- 
-var timestampElement = React.render(timestampInstance,
-  document.getElementById("reactContainer"));
- 
-setInterval(function() {
-  timestampElement.setState({
-    date: "Updated through setState: "
-        + new Date().toString() }) }, 500)
- 
-var helloInstance = React.createFactory(HelloWorld)( { from: "From the client" } );
-var helloElement = React.render(helloInstance,
-  document.getElementById("reactHelloContainer"));
-},{"../lib/Components/HelloWorld":2,"../lib/Components/Timestamp":3,"react":160}],2:[function(require,module,exports){
-var React = require('react')
  
 module.exports = React.createClass({displayName: "exports",
   getInitialState: function() {
@@ -37,7 +19,7 @@ module.exports = React.createClass({displayName: "exports",
     )
   }
 })
-},{"react":160}],3:[function(require,module,exports){
+},{"react":160}],2:[function(require,module,exports){
 var React = require('react')
  
 module.exports = React.createClass({displayName: "exports",
@@ -50,7 +32,26 @@ module.exports = React.createClass({displayName: "exports",
     return React.createElement("div", null, this.state.date)
   }
 })
-},{"react":160}],4:[function(require,module,exports){
+},{"react":160}],3:[function(require,module,exports){
+var React = require('react')
+var HelloWorld = require('../Components/HelloWorld')
+var Timestamp = require('../Components/Timestamp')
+ 
+React.render(
+    React.createElement(HelloWorld, {from: "index.jsx, transformed, bundled," + ' ' +
+        "and running on the client"}),
+    document.getElementById('reactHelloContainer'))
+ 
+var timestampElement = React.render(
+    React.createElement(Timestamp, null),
+    document.getElementById('reactContainer'))
+ 
+setInterval(function() {
+    timestampElement.setState({
+        date: "Updated through setState: "
+              + new Date().toString() }) },
+    500)
+},{"../Components/HelloWorld":1,"../Components/Timestamp":2,"react":160}],4:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -19063,4 +19064,4 @@ module.exports = warning;
 
 module.exports = require('./lib/React');
 
-},{"./lib/React":28}]},{},[1]);
+},{"./lib/React":28}]},{},[3]);

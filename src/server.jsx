@@ -4,11 +4,7 @@ var React = require('react')
   , path = require('path')
  
 var app = express()
- 
-app.use('/Components',
-  express.static(path.join(__dirname, 'Components')))
- 
-app.use('/assets', express.static(path.join(__dirname, 'assets')))
+app.use('/pages', express.static(path.join(__dirname, 'Pages')))
  
 app.get('/', function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'})
@@ -18,11 +14,11 @@ app.get('/', function (req, res) {
         <title>Hello World</title>
       </head>
       <body>
-        <HelloWorld from="index.jsx on the server" />
+        <HelloWorld from="server.jsx, running on the server" />
         <div id="reactContainer" />
         <div id="reactHelloContainer"></div>
       </body>
-      <script src="/assets/index.js"></script>
+      <script src="/pages/index.js"></script>
     </html>)
  
     res.end(html)

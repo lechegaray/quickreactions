@@ -4,11 +4,7 @@ var React = require('react')
   , path = require('path')
  
 var app = express()
- 
-app.use('/Components',
-  express.static(path.join(__dirname, 'Components')))
- 
-app.use('/assets', express.static(path.join(__dirname, 'assets')))
+app.use('/pages', express.static(path.join(__dirname, 'Pages')))
  
 app.get('/', function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'})
@@ -18,11 +14,11 @@ app.get('/', function (req, res) {
         React.createElement("title", null, "Hello World")
       ), 
       React.createElement("body", null, 
-        React.createElement(HelloWorld, {from: "index.jsx on the server"}), 
+        React.createElement(HelloWorld, {from: "server.jsx, running on the server"}), 
         React.createElement("div", {id: "reactContainer"}), 
         React.createElement("div", {id: "reactHelloContainer"})
       ), 
-      React.createElement("script", {src: "/assets/index.js"})
+      React.createElement("script", {src: "/pages/index.js"})
     ))
  
     res.end(html)
