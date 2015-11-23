@@ -20,13 +20,14 @@ app.get('/', function (req, res) {
       <head>
         <title>Hello World</title>
         <script src="//fb.me/react-0.13.1.js"></script>
-        <script src="/Components/Timestamp.js"></script>
+        <script src="//fb.me/JSXTransformer-0.13.1.js"></script>
+        <script src="/Components/Timestamp.jsx" type="text/jsx"></script>
       </head>
       <body>
         <HelloWorld from="index.jsx on the server" />
         <div id="reactContainer" />
       </body>
-      <script src="/assets/index.js"></script>
+      <script src="/assets/index.js" type="text/jsx"></script>
     </html>)
  
     res.end(html)
