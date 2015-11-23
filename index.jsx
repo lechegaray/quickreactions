@@ -20,9 +20,12 @@ http.createServer(function (req, res) {
     body +
     '<script>' +
     'var timestampInstance = React.createFactory(Timestamp)();' +
+    'var timestampElement = React.render(timestampInstance, ' +
+    '  document.getElementById("reactContainer"));' +
     'setInterval(function() { ' +
-    '    React.render(timestampInstance, ' +
-    '        document.getElementById("reactContainer")) }, 500)' +
+    '  timestampElement.setState({ ' +
+    '    date: "Updated through setState: " + ' +
+    '        new Date().toString() }) }, 500)' +
     '</script>' +
     '</html>'
     )
