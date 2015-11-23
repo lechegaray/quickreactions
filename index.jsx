@@ -1,20 +1,31 @@
 var http = require('http')
   , React = require('react')
   , HelloWorld = require('./Components/HelloWorld')
+  , fs = require('fs')
  
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'})
-  res.end(
-    React.renderToString(
-      <html>
-        <head>
-          <title>Hello World</title>
-        </head>
-        <body>
-          <HelloWorld from="index.jsx on the server" />
-        </body>
-      </html>
+  var body = React.renderToString(
+    <body>
+      <HelloWorld from="index.jsx on the server" />
+      <div id="reactContainer" />
+    </body>)
+ 
+  res.end('<html><head><title>Hello World</title>' +
+    '<script src="//fb.me/react-0.13.1.js"></script>' +
+    '</head>' +
+    '<script>' +
+    fs.readFileSync('./Components/Timestamp.js') +
+    '</script>' +
+    body +
+    '<script>' +
+    'var timestampInstance = React.createFactory(Timestamp)();' +
+    'setInterval(function() { ' +
+    '    React.render(timestampInstance, ' +
+    '        document.getElementById("reactContainer")) }, 500)' +
+    '</script>' +
+    '</html>'
     )
-  )
+ 
 }).listen(1337)
 console.log('Server running at http://localhost:1337/')
